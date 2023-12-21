@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Vehículos</title>
+</head>
+<body>
+    <h1>Pagina para revisar que se guardo en la base de datos </h1>
+  <script>
+    function registrarVehiculo(codigo, descripcion, marca, modelo, año) {
+      if (typeof localStorage !== 'undefined') {
+        let baseDeDatos = JSON.parse(localStorage.getItem('baseDeDatos')) || [];
+
+        const nuevoVehiculo = {
+          codigo: codigo,
+          descripcion: descripcion,
+          marca: marca,
+          modelo: modelo,
+          año: año
+        };
+
+        baseDeDatos.push(nuevoVehiculo);
+
+        localStorage.setItem('baseDeDatos', JSON.stringify(baseDeDatos));
+
+        console.log('Vehículo registrado con éxito:', nuevoVehiculo);
+      } else {
+        console.error('localStorage no está disponible en este entorno.');
+      }
+    }
+
+    // Ejemplo de uso
+    registrarVehiculo('Cjashla123', 'Negro, 4 puertas', 'Hiundai', 'Akuas', 2023);
+  </script>
+
+</body>
+</html>
